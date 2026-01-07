@@ -58,6 +58,7 @@ function addtask(taskmessage){
         i =localStorage.getItem("count")
     }
     localStorage.setItem(`task${Number(i)+1}`,taskmessage)
+    task.id=i;
     localStorage.setItem("count",`${Number(i)+1}`)
     }
 }
