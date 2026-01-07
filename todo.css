@@ -1,0 +1,23 @@
+.delete{
+    background-color: red;
+    width: 30px;
+    height: 30px;
+}
+.unchecked{
+    width: 30px;
+    height: 30px;
+    
+}
+h3{
+    border: solid;
+    width: 40%;
+    
+}
+.task{
+    display: flex;
+    align-items: center;
+}
+.main{
+    /* justify-items: center; */
+}
+
