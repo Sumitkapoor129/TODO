@@ -54,7 +54,14 @@ function getData(){
     let data = localStorage.getItem("task");
     tasksContainer.innerHTML = JSON.parse(data);
 }
+tasksContainer.addEventListener("click",(e)=>{
+    if(e.target.classList.contains("delete")){
+        tasksContainer.removeChild(e.target.parentElement.parentElement) 
+    }
+    saveData();
+})
 
 getData();
+
 
 
