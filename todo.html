@@ -1,33 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="todo.css">
-</head>
-<body>
-   
-    <div class="main">
-         <div class="heading"><h1>TODO LIST</h1>
-    </div>
-        <div class="input">
-            <form>
-            <h2><input type="text" class="userinput">
-                <button class="add" type="submit">Add</button>
-            </h2>
-             </form>
-        </div>
-        <div class="tasks">
-            <div class="task" style="display: none;">
-                <h3>Y1</h3>
-                <button class="unchecked">D</button><button class="delete">X</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="todo.css" class="css" />
+    </head>
+    <body>
+        <div class="main">
+            <div class="slider">X</div>
+            <div class="container">
+                <div class="top-cont">
+                    <div class="title-box">
+                        <h2 class="heading">TODO</h2>
+                    </div>
+                    <div class="search-box">
+                        <form id="search-form" action="">
+                            <input type="text" placeholder="Search" />
+                            <input type="submit" value="submit" />
+                        </form>
+                    </div>
+                </div>
+                <div class="adder-cont">
+                    <form id="add-form" action="">
+                        <input type="text" placeholder="Add new" />
+                        <input type="submit" value="Add" />
+                    </form>
+                </div>
+                <div class="task-cont">
+                    <div class="task">
+                        <div class="task-name">TEA time</div>
+                        <div class="task-btn-cont">
+                            <div class="task-btn marked">M</div>
+                            <div class="task-btn pinned">P</div>
+                            <div class="task-btn delete">X</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
-   
-    </div>
-</body>
-<script src="todo.js"></script>
+    </body>
 </html>
-
