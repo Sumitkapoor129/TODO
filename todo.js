@@ -60,7 +60,11 @@ function addtask(taskmessage,d=0){
 
 
     taskname.textContent=taskmessage
-    marked.textContent="M";
+    if(localStorage.getItem(d)==2){
+    marked.textContent="UM";}
+    else{
+      marked.textContent="M";  
+    }
 
     if(localStorage.getItem(d)==1){
     pinned.textContent="UP";
@@ -78,6 +82,9 @@ else{
     // console.log(task);
     if(localStorage.getItem(d)==1){
         pinnedsec.appendChild(task)
+    }
+    else if(localStorage.getItem(d)==2){
+        markedsec.appendChild(task)
     }
     else{
     unmarkedsec.appendChild(task)}
@@ -133,8 +140,28 @@ tasksContainer.addEventListener("click",(e)=>{
     localStorage.setItem(`${id}`,"0")
     unmarkedsec.innerHTML="";
     pinnedsec.innerHTML="";
+    markedsec.innerHTML="";
     loadtasks();
     // unmarkedsec.appendChild(ele);
+   }
+   if(e.target.textContent=="UM"){
+    e.target.textContent="M"
+    const ele=e.target.parentElement.parentElement
+    const id=e.target.parentElement.parentElement.id
+    localStorage.setItem(`${id}`,"0")
+    unmarkedsec.appendChild(ele);
+   }
+   else if(e.target.textContent=="M"){
+       e.target.textContent="UM"
+       console.log(e.target.textContent);
+       
+       const id=e.target.parentElement.parentElement.id
+       console.log(id);
+    localStorage.setItem(`${id}`,"2")
+    unmarkedsec.innerHTML="";
+    pinnedsec.innerHTML="";
+    markedsec.innerHTML="";
+    loadtasks();
    }
 })
 
