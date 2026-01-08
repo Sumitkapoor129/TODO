@@ -9,7 +9,10 @@
 body {
     background: #eaf4ff;
 }
-
+.icon{
+    width: 25px;
+    height: 20px;
+}
 /* ===== Layout ===== */
 .main {
     height: 100vh;
@@ -29,9 +32,7 @@ body {
     animation: slideIn 0.4s ease;
 }
 
-.hidden {
-    display: none;
-}
+
 
 @keyframes slideIn {
     from {
@@ -109,7 +110,7 @@ button,
 .task-btn {
     border: none;
     border-radius: 10px;
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.6rem;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     cursor: pointer;
@@ -181,7 +182,7 @@ button:hover,
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
-    animation: fadeUp 0.3s ease;
+    animation: fadeUp .06s ease;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -204,4 +205,7 @@ button:hover,
 .task-btn-cont {
     display: flex;
     gap: 0.4rem;
+}
+.hidden {
+    display: none;
 }

@@ -1,3 +1,7 @@
+
+//!  Filter And Due Date Feature Left.........
+
+
 const tasksContainer=document.querySelector(".task-cont");
 const userinput= document.querySelector(".userinput");
 const submit= document.querySelector(".submit");
@@ -46,6 +50,7 @@ function creatediv(classes){
 function addtask(taskmessage,d=0){
 
     const task=creatediv("task");
+    task.setAttribute("draggable","true")
     const taskname=creatediv("task-name")
     const taskbtn=creatediv("task-btn-cont")
     const marked=creatediv(["task-btn","marked"])
@@ -68,7 +73,7 @@ else{
     pinned.textContent="P";
 
 }
-    deleted.textContent="X";
+    deleted.innerHTML=`<img src="delete-svg.svg" alt="" class="icon"></img>`;
     task.appendChild(taskname)
     taskbtn.appendChild(marked)
     taskbtn.appendChild(pinned)
@@ -109,12 +114,13 @@ form.addEventListener("submit",(e)=>{
 loadtasks()
 //task-options implementation
 tasksContainer.addEventListener("click",(e)=>{
-   if(e.target.textContent=="X"){
-    console.log(e.target.parentElement.parentElement);
-    e.target.parentElement.parentElement.remove();
+    console.log(e.target);
+    
+   if(e.target.className=="icon"){
+    console.log(e.target.parentElement.parentElement.parentElement);
+    e.target.parentElement.parentElement.parentElement.remove();
 
-
-    let id=e.target.parentElement.parentElement.id;
+    let id=e.target.parentElement.parentElement.parentElement.id;
     localStorage.removeItem(`task${id}`)
     let a=Number(localStorage.getItem("count"));
     localStorage.setItem("count",a)
@@ -142,22 +148,23 @@ tasksContainer.addEventListener("click",(e)=>{
    }
    if(e.target.textContent=="UM"){
     e.target.textContent="M"
-    const ele=e.target.parentElement.parentElement
     const id=e.target.parentElement.parentElement.id
-    localStorage.setItem(`${id}`,"0")
-    unmarkedsec.appendChild(ele);
-   }
-   else if(e.target.textContent=="M"){
-       e.target.textContent="UM"
-       console.log(e.target.textContent);
-       
-       const id=e.target.parentElement.parentElement.id
        console.log(id);
-    localStorage.setItem(`${id}`,"2")
+    localStorage.setItem(`${id}`,"0")
     unmarkedsec.innerHTML="";
     pinnedsec.innerHTML="";
     markedsec.innerHTML="";
     loadtasks();
+}
+else if(e.target.textContent=="M"){
+    e.target.textContent="UM"
+    console.log(e.target.textContent);
+    const ele=e.target.parentElement.parentElement
+    const id=e.target.parentElement.parentElement.id
+    localStorage.setItem(`${id}`,"0")
+    unmarkedsec.appendChild(ele);
+    
+    
    }
 })
 
@@ -167,6 +174,8 @@ searchform.addEventListener("submit",(e)=>{
 })
 searchform.addEventListener("input",(e)=>{
     const alltasks=document.querySelectorAll(".task")
+    console.log(alltasks);
+    
     e.preventDefault()
     // console.log(usersearch.value);
 
@@ -208,4 +217,59 @@ sliderbutton.addEventListener("click",(e)=>{
     }
 })
 
+//editing task
+tasksContainer.addEventListener("dblclick",(e)=>{
+    // console.log(e.target);
+    if(e.target.className=="task-name"){
+        const textcont=e.target;
+        const text=textcont.textContent
+        const input=document.createElement("input");
+        input.value=text;
+        input.classList.add("userinput");
+        input.focus();
+        textcont.replaceWith(input);
 
+        let saved=false;
+        function save(){
+            if(saved)return;
+            saved=true;
+            const div=creatediv("task-name")
+            div.textContent=input.value.trim() || text;
+            input.replaceWith(div);
+        }
+        input.addEventListener("blur",save)
+        input.addEventListener("keydown",(e)=>{
+            if(e.key=="Enter")save()
+        })
+    }
+    
+})
+
+// Drag and drop feature
+let text1;
+let draggingEle;
+let text2;
+tasksContainer.addEventListener("dragstart",(e)=>{
+    console.log(e.target);
+    if(e.target.className=="task"){
+        text1=e.target.children[0].textContent;
+        draggingEle=e.target;
+    }
+})
+tasksContainer.addEventListener("dragover",(e)=>{
+    e.preventDefault();
+})
+tasksContainer.addEventListener("drop",(e)=>{
+    console.log(e.target);
+    if(e.target.children[0].textContent!=text1 &&draggingEle.children[1].children[1].textContent!="UP" ){
+        let target=e.target;
+        if(e.target.children[1].children[1].textContent!="UP"){
+            
+            text2=target.children[0].textContent;
+            target.children[0].textContent=text1;
+            console.log(draggingEle.children[1].children[1]);
+            
+            draggingEle.children[0].textContent=text2;
+        }
+    } 
+})
