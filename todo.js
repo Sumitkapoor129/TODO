@@ -2,6 +2,8 @@ const tasksContainer=document.querySelector(".task-cont");
 const userinput= document.querySelector(".userinput");
 const submit= document.querySelector(".submit");
 const form =document.querySelector("#add-form");
+const searchform=document.querySelector("#search-form")
+const usersearch=document.querySelector(".search")
 
 
 
@@ -165,6 +167,33 @@ tasksContainer.addEventListener("click",(e)=>{
    }
 })
 
+searchform.addEventListener("submit",(e)=>{
+    e.preventDefault();
+})
+searchform.addEventListener("input",(e)=>{
+    const alltasks=document.querySelectorAll(".task")
+    e.preventDefault()
+    // console.log(usersearch.value);
 
+    if(usersearch.value==""){
+        console.log(alltasks);
+        alltasks.forEach((task)=>{
+            if(task.classList.contains("hidden")){
+                task.classList.remove("hidden") 
+            }
+        })
+    }
+    else{
+        alltasks.forEach((task)=>{
+            task.classList.add("hidden");
+            if(task.children[0].textContent.includes(usersearch.value)){
+                // console.log("worked");
+                task.classList.remove("hidden");}
+            console.log(task.classList);
+        })
+        
+    }
+    
+})
 
 
