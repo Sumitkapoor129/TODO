@@ -1,84 +1,207 @@
+/* ===== Reset & Base ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+body {
+    background: #eaf4ff;
+}
+
+/* ===== Layout ===== */
 .main {
     height: 100vh;
-    margin: 3.5%;
+    margin: 3%;
     display: flex;
-    flex-direction: row;
-    background-color: lightblue;
+    gap: 1rem;
 }
+
+/* ===== Slider ===== */
 .slider {
-    border: 0px solid black;
-    background-color: blue;
-    width: 00px;
-    
+    width: 260px;
+    background: linear-gradient(180deg, #1e3c72, #2a5298);
+    border-radius: 16px;
+    padding: 1rem;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    animation: slideIn 0.4s ease;
 }
+
+.hidden {
+    display: none;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slider-cont {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.slider-top-cont {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.slider-options-cont {
+    opacity: 0.85;
+}
+
+.slider-bottom-cont div {
+    margin-top: auto;
+    padding: 0.6rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.slider-bottom-cont div:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== Main Container ===== */
 .container {
     width: 100%;
     display: grid;
-    grid-template-rows: 14% 10% 1fr;
-    /*height: 800px;*/
-}
-.top-cont {
-        
-    border: 1px solid black;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-}
-#add-form {
-    margin: 0.8rem 0;
-    /*border: 2px solid black;*/
-    padding: 0.3rem;
-}
-.adder-cont {
-    border: 2px solid black;
-}
-.task-cont {
-    border: 2px solid black;
+    grid-template-rows: auto auto 1fr;
+    gap: 1rem;
 }
 
-.task {
+/* ===== Top Bar ===== */
+.top-cont {
+    background: white;
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
     display: flex;
-    border: 2px solid green;
-    flex-direction: row;
     justify-content: space-between;
-    margin: 2px 0;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.heading {
+    letter-spacing: 1px;
+}
+
+/* ===== Buttons ===== */
+button,
+.task-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 0.4rem 0.8rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+.task-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Search ===== */
+.search-box input {
+    padding: 0.45rem 0.6rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+}
+
+/* ===== Add Task ===== */
+.adder-cont {
+    background: white;
+    border-radius: 16px;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+#add-form {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.userinput {
+    flex: 1;
+    padding: 0.5rem 0.6rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.userinput:focus {
+    border-color: #764ba2;
+    box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.25);
+}
+
+/* ===== Task List ===== */
+.task-cont {
+    background: white;
+    border-radius: 16px;
+    padding: 0.8rem;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Task Item ===== */
+.task {
+    background: linear-gradient(135deg, #fdfbfb, #ebedee);
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task:hover {
+    transform: scale(1.01);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .task-btn-cont {
     display: flex;
-    /*border: 2px solid green;*/
-    flex-direction: row;
-}
-.task-btn {
-    border: 1px solid red;
-    margin: 0 5px;
-    padding: 0 5px;
-}
-.hidden{
-    display: none;
-}
-.title-box{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 10%;
-}
-.slider-cont{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-.slider-top-cont{
-     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    gap: 0.4rem;
 }
