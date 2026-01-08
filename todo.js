@@ -4,11 +4,8 @@ const submit= document.querySelector(".submit");
 const form =document.querySelector("#add-form");
 const searchform=document.querySelector("#search-form")
 const usersearch=document.querySelector(".search")
-
-
-
-
-
+const sliderbutton=document.querySelector(".slider-btn")
+const slider=document.querySelector(".slider");
 
 const pinnedsec=creatediv("pinned");
 const unmarkedsec=creatediv("unmarked");
@@ -16,10 +13,6 @@ const markedsec=creatediv("marked");
 tasksContainer.appendChild(pinnedsec)
 tasksContainer.appendChild(unmarkedsec)
 tasksContainer.appendChild(markedsec)
-
-
-
-
 
 
 
@@ -37,7 +30,6 @@ function loadtasks(){
     loadingtasks=false;
 }
 
-
 function creatediv(classes){
     const div=document.createElement("div")
     if(Array.isArray(classes)){
@@ -50,6 +42,7 @@ function creatediv(classes){
     }
     return div
 }
+
 function addtask(taskmessage,d=0){
 
     const task=creatediv("task");
@@ -106,7 +99,7 @@ else{
 
 }
 
-// localStorage.clear();
+// adding task and storing in local storage 
 form.addEventListener("submit",(e)=>{
     e.preventDefault();
     message=userinput.value;
@@ -114,6 +107,7 @@ form.addEventListener("submit",(e)=>{
     userinput.value="";
 })
 loadtasks()
+//task-options implementation
 tasksContainer.addEventListener("click",(e)=>{
    if(e.target.textContent=="X"){
     console.log(e.target.parentElement.parentElement);
@@ -167,6 +161,7 @@ tasksContainer.addEventListener("click",(e)=>{
    }
 })
 
+//Search Feature 
 searchform.addEventListener("submit",(e)=>{
     e.preventDefault();
 })
@@ -194,6 +189,23 @@ searchform.addEventListener("input",(e)=>{
         
     }
     
+})
+
+//Slider feature
+sliderbutton.addEventListener("click",(e)=>{
+    console.log(e.target.textContent);
+    
+    if(e.target.textContent ==">"){
+        slider.classList.toggle("hidden")
+        slider.style.width="15%";
+        slider.style.height="45%";
+        
+        e.target.textContent="<"}
+        else{
+        slider.classList.toggle("hidden")
+        e.target.textContent=">"
+        slider.style.width="0%";
+    }
 })
 
 

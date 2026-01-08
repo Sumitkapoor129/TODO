@@ -11,9 +11,10 @@
     background-color: lightblue;
 }
 .slider {
-    border: 3px solid black;
-    padding-right: 3%;
-    margin-right: 2%;
+    border: 0px solid black;
+    background-color: blue;
+    width: 00px;
+    
 }
 .container {
     width: 100%;
@@ -22,6 +23,7 @@
     /*height: 800px;*/
 }
 .top-cont {
+        
     border: 1px solid black;
     width: 100%;
     display: flex;
@@ -62,4 +64,21 @@
 }
 .hidden{
     display: none;
+}
+.title-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 10%;
+}
+.slider-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+.slider-top-cont{
+     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
