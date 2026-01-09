@@ -10,6 +10,8 @@ const searchform=document.querySelector("#search-form")
 const usersearch=document.querySelector(".search")
 const sliderbutton=document.querySelector(".slider-btn")
 const slider=document.querySelector(".slider");
+const night=document.querySelector(".night-mode")
+
 
 const pinnedsec=creatediv("pinned");
 const unmarkedsec=creatediv("unmarked");
@@ -261,6 +263,7 @@ tasksContainer.addEventListener("dragover",(e)=>{
 })
 tasksContainer.addEventListener("drop",(e)=>{
     console.log(e.target);
+    if(e.target.classList.contains("task-cont"))return
     if(e.target.children[0].textContent!=text1 &&draggingEle.children[1].children[1].textContent!="UP" ){
         let target=e.target;
         if(e.target.children[1].children[1].textContent!="UP"){
@@ -272,4 +275,39 @@ tasksContainer.addEventListener("drop",(e)=>{
             draggingEle.children[0].textContent=text2;
         }
     } 
+})
+
+
+//Night Mode
+
+let mode="light";
+
+function darkmode(){
+mode="dark"
+night.style.backgroundColor=" #5e7790ff"
+document.body.style.backgroundColor=" #000000e5"
+document.querySelector(".top-cont").style.backgroundColor=" #38597aff"
+document.querySelector(".top-cont").style.color=" #fcfdffff"
+document.querySelector(".adder-cont").style.backgroundColor=" #38597aff"
+document.querySelector(".adder-cont").style.color=" #fcfdffff"
+
+tasksContainer.style.backgroundColor=" #38597aff"
+}
+
+function lightmode(){
+    mode="light"
+    night.style.backgroundColor=" #ffffffff"
+    document.body.style.backgroundColor=" #f8f8f8e5"
+    document.querySelector(".top-cont").style.backgroundColor=" #edf0f4ff"
+    document.querySelector(".top-cont").style.color=" #0a0b0dff"
+    document.querySelector(".adder-cont").style.backgroundColor=" #edf0f4ff"
+    document.querySelector(".adder-cont").style.color=" #0a0b0dff"
+    tasksContainer.style.backgroundColor=" #f8f8f8ff"
+}
+
+night.addEventListener("click",(e)=>{
+    console.log(mode);
+    if(mode ==="light")darkmode()
+    else{
+        lightmode()}
 })
